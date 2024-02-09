@@ -25,7 +25,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <form method="post" action="{{ route('admin.product.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
+                        <form id="product_form" method="post" action="{{ route('admin.product.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
                             @csrf
                             <x-text-input id="mode" name="mode" :value="$mode" type="hidden" />
                             <x-text-input id="product_image_delete" name="product_image_delete"  type="hidden" />
@@ -56,7 +56,7 @@
                             </div>
                             <div>
                                 <x-input-label for="product_name" :value="__('Name')" />
-                                <x-text-input id="product_name" name="product_name" :value="old('product_name',!empty($product)?$product->name:'')" type="text" class="mt-1 block w-full"  required autofocus autocomplete="product_name" max='255' />
+                                <x-text-input id="product_name" name="product_name" :value="old('product_name',!empty($product)?$product->name:'')" type="text" class="mt-1 block w-full"  required autofocus autocomplete="product_name" />
                                 <x-input-error class="mt-2" :messages="$errors->get('product_name')" />
                             </div>
                             <div>
@@ -144,5 +144,7 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="{{ asset('js/jquery.validate.min.js')}}"></script>
+    <script src="{{ asset('js/additional-methods.min.js')}}"></script>
     <script src="{{ asset('js/admin/product_add_edit.js')}}"></script>
 </x-admin-layout>
